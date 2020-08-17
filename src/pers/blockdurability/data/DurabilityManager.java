@@ -18,12 +18,19 @@ public class DurabilityManager {
 	
 	public void setBlockDurability(Block block,int dur) {
 		PacketContainer packet=PacketUtil.sendBreakAnimationPacket(1, block, dur);
+		if(dur>9||dur<0)dur=-1;
 		packetMap.put(block.getLocation(), new DurabilityInfo(packet,dur));
 	}
 	
 	public int getBlockDurability(Block block) {
+		if(block==null)return -1;
 		DurabilityInfo info=packetMap.get(block.getLocation());
 		return info==null?-1:info.getDurability();
+	}
+	
+	public DurabilityInfo getBlockDurabilityInfo(Block block) {
+		if(block==null)return null;
+		return packetMap.get(block.getLocation());
 	}
 	
 	public Collection<PacketContainer> getSendedPackets() {
