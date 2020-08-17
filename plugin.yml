@@ -1,0 +1,13 @@
+name: BlockDurability
+main: pers.blockdurability.BlockDurability
+version: 1.0
+depend: [ProtocolLib]
+commands:
+  blockdur:
+    description: 基础指令
+    permission: blockdurability.use
+    permission-message: 你没有权限!
+permissions:
+  blockdurability.use:
+    description: 使用权限
+    default: OP
